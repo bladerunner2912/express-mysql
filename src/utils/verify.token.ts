@@ -1,6 +1,7 @@
 import { verify } from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 import User from "../models/users";
+import { config } from "dotenv";
 
 export const verifyJwtToken = async (
   req: Request,
@@ -11,7 +12,7 @@ export const verifyJwtToken = async (
 
   if (authorization) {
     const token = authorization.split(" ")[1];
-    const payload: any = verify(token, "daisy2308");
+    const payload: any = verify(token, config.JWT_SECRET);
     if (payload.type != undefined) {
       const user = await User.findByPk(payload.user_id);
       if (user) {

@@ -11,7 +11,6 @@ import User from "./users";
 import Comment from "./comments";
 
 @Table({
-  timestamps: true,
   tableName: "blogs",
   modelName: "Blogs",
 })
@@ -57,10 +56,10 @@ class Blogs extends Model {
 
   @Column({
     type: DataType.DATE,
-    allowNull: false,
+    allowNull: true,
     defaultValue: DataType.NOW,
   })
-  updatedAt!: Date;
+  updatedAt?: Date;
 }
 
 export default Blogs;

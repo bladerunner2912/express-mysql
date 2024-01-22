@@ -11,7 +11,7 @@ import Blog from "./blogs";
 
 @Table({
   modelName: "Comment",
-  tableName: "comment", // Assuming the table name is 'comment'
+  tableName: "comment",
 })
 export class Comment extends Model {
   @Column({
@@ -30,7 +30,7 @@ export class Comment extends Model {
   @ForeignKey(() => User)
   @Column({
     type: DataType.INTEGER.UNSIGNED,
-    allowNull: true, // Depending on your requirements, you might want to set it to false if user_id is always required
+    allowNull: true,
   })
   user_id!: number;
 
@@ -40,30 +40,30 @@ export class Comment extends Model {
   @ForeignKey(() => Blog)
   @Column({
     type: DataType.INTEGER.UNSIGNED,
-    allowNull: true, // Depending on your requirements, you might want to set it to false if blog_id is always required
+    allowNull: true,
   })
   blog_id!: number;
 
   @BelongsTo(() => Blog)
   blog!: Blog;
 
-  @Column({
-    type: DataType.DATE,
-    allowNull: true,
-  })
-  edited_at?: Date;
+  // @Column({
+  //   type: DataType.DATE,
+  //   allowNull: true,
+  // })
+  // edited_at?: Date;
 
   @Column({
     type: DataType.DATE,
     defaultValue: DataType.NOW,
     allowNull: false,
   })
-  created_at!: Date;
+  createdAt!: Date;
 
   @Column({
     type: DataType.DATE,
     allowNull: true,
   })
-  updated_at!: Date;
+  updatedAt?: Date;
 }
 export default Comment;
