@@ -7,7 +7,7 @@ const log = console.log;
 const registerUser = async (req: Request, res: Response) => {
   try {
     let newUser = await User.create(req.body);
-    const token = createAccessToken(newUser.user_id);
+    const token = await createAccessToken(newUser.user_id);
     res.status(200).json({ user: newUser, token: token });
   } catch (e) {
     res.status(400).json(e);
