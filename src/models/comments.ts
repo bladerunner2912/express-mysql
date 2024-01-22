@@ -59,5 +59,11 @@ export class Comment extends Model {
     allowNull: false,
   })
   created_at!: Date;
+
+  @Column({
+    type: DataType.DATE,
+    allowNull: true,
+  })
+  updated_at!: Date;
 }
 export default Comment;
