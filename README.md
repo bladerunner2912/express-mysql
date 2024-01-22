@@ -9,11 +9,47 @@ _notes_
 Express with sequelize and mysql
 
 JWT TOKEN for authentication . The server assumes the frontend will store and cache the token for the user based on its user_id. Check auth.middleware.ts to know the createAccessToken method. Default alogrithms are used.
-Hence based on above JWT TOKEN one \*logout functionity can be achieved in the frontend only clearing out the stored or cached token.
+Hence based on above JWT TOKEN one \*logout functionity can be achieved in the frontend only clearing out the stored or cached token\*.
 
 sequelize-cli can be used was observed very late in the task notes hence I didnt used it from start and hence not integrated with this version of project yet. // Always prefer sequelize-cli
 
-_API DESCRIPTION_
+$DATABASE DESCRIPTION
+
+users
++-----------+--------------+------+-----+---------+----------------+
+| Field | Type | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+----------------+
+| user_id | int | NO | PRI | NULL | auto_increment |
+| username | varchar(50) | NO | UNI | NULL | |
+| password | varchar(255) | NO | | NULL | |
+| email | varchar(255) | NO | UNI | NULL | |
+| createdAt | datetime | YES | | NULL | |
+| updatedAt | datetime | YES | | NULL | |
++-----------+--------------+------+-----+---------+----------------+
+
+blogs
+| Field | Type | Null | Key | Default | Extra |
++-----------+--------------+------+-----+-------------------+-------------------+
+| blog_id | int | NO | PRI | NULL | auto_increment |
+| title | varchar(255) | NO | | NULL | |
+| content | text | NO | | NULL | |
+| user_id | int | YES | MUL | NULL | |
+| createdAt | timestamp | YES | | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
+| updatedAt | timestamp | YES | | NULL | |
++-----------+--------------+------+-----+-------------------+-------------------+
+
+comment
+| Field | Type | Null | Key | Default | Extra |
++------------+-----------+------+-----+-------------------+-------------------+
+| comment_id | int | NO | PRI | NULL | auto_increment |
+| content | text | NO | | NULL | |
+| user_id | int | YES | MUL | NULL | |
+| blog_id | int | YES | MUL | NULL | |
+| createdAt | timestamp | YES | | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
+| updatedAt | timestamp | YES | | NULL | |
++------------+-----------+------+-----+-------------------+-------------------+
+
+$ API DESCRIPTION \*
 
 # ENDPOINTS | TYPE | INPUTS | OUTPUTS
 
