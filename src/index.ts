@@ -1,12 +1,15 @@
-import express, { NextFunction } from "express";
+import express from "express";
 import sequelize from "./sequelize";
 import config from "./config";
 import chalk from "chalk";
 import bodyParser from "body-parser";
 import userRoutes from "../src/routes/user.routes";
+import blogRoutes from "../src/routes/blog.routes";
+import commentRoutes from "../src/routes/comment.routes";
 
 const app = express();
 const log = console.log;
+
 sequelize
   .authenticate()
   .then(() => {
@@ -58,7 +61,11 @@ const startServer = () => {
     }
     next();
   });
+
+  /*ROUTES*/
   app.use("/users", userRoutes);
+  app.use("/blogs", blogRoutes);
+  app.use("/comments", commentRoutes);
   /*Default Gateway*/
   app.get("/", (req, res) => {
     res.json({ message: "ok" });
@@ -72,7 +79,6 @@ const startServer = () => {
       log(chalk.red(e));
     }
   });
-  /*Routes*/
 
   /*Error Handling*/
   //always will be last cause if it hasnt executed one of the use or request succesfully on any call to server this will be called.

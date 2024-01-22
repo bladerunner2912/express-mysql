@@ -21,7 +21,7 @@ class Blogs extends Model {
     autoIncrement: true,
     primaryKey: true,
   })
-  id!: number;
+  blog_id!: number;
 
   @Column({
     type: DataType.STRING,
